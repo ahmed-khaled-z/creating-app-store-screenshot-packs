@@ -1,0 +1,4 @@
+interface:
+  display_name: "App Store Screenshot Packs"
+  short_description: "Create store-ready screenshot packs with previews"
+  default_prompt: "Use $creating-app-store-screenshot-packs to preview, render, and package promotional app screenshots."
