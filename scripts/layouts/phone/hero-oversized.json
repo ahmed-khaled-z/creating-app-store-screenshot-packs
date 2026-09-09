@@ -1,0 +1,59 @@
+{
+  "id": "hero-oversized",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "phone",
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "hero",
+    "single",
+    "bold"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.07,
+      0.05,
+      0.93,
+      0.2
+    ],
+    "align": "center",
+    "title_max_chars": 22,
+    "subtitle_max_chars": 60,
+    "scale": 1.12
+  },
+  "label": "Oversized hero",
+  "family": "phone",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.8,
+      "cx": 0.5,
+      "top": 0.24,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.16
+    }
+  ]
+}

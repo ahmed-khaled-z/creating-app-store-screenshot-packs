@@ -1,0 +1,58 @@
+{
+  "id": "hero-cropped-bottom",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "phone",
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "single",
+    "cropped"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.08,
+      0.06,
+      0.92,
+      0.27
+    ],
+    "align": "center",
+    "title_max_chars": 32,
+    "subtitle_max_chars": 96,
+    "scale": 1.0
+  },
+  "label": "Cropped hero",
+  "family": "phone",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.66,
+      "cx": 0.5,
+      "top": 0.33,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.2
+    }
+  ]
+}

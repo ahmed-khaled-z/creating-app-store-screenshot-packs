@@ -1,0 +1,74 @@
+{
+  "id": "tablet-promo-phone-showcase",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "phone"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "promotional"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [
+    {
+      "kind": "promo-note",
+      "area": [
+        0.1,
+        0.86,
+        0.9,
+        0.94
+      ]
+    },
+    {
+      "kind": "blob",
+      "cx": 0.5,
+      "cy": 0.58,
+      "r": 0.42,
+      "tone": "brand",
+      "z": 1
+    }
+  ],
+  "tags": [
+    "promotional",
+    "cross-class"
+  ],
+  "weight": 0.9,
+  "text": {
+    "area": [
+      0.08,
+      0.05,
+      0.92,
+      0.24
+    ],
+    "align": "center",
+    "title_max_chars": 34,
+    "subtitle_max_chars": 110,
+    "scale": 1.0
+  },
+  "label": "Tablet promo \u2014 phone artwork",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.4,
+      "cx": 0.5,
+      "top": 0.29,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "lifted",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "tablet-with-cards",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [
+    {
+      "kind": "card",
+      "cx": 0.16,
+      "cy": 0.44,
+      "w": 0.2,
+      "h": 0.11,
+      "slot": 0
+    },
+    {
+      "kind": "card",
+      "cx": 0.84,
+      "cy": 0.56,
+      "w": 0.2,
+      "h": 0.11,
+      "slot": 1
+    }
+  ],
+  "tags": [
+    "single",
+    "cards"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.1,
+      0.04,
+      0.9,
+      0.19
+    ],
+    "align": "center",
+    "title_max_chars": 38,
+    "subtitle_max_chars": 96,
+    "scale": 1.0
+  },
+  "label": "Tablet with supporting cards",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.62,
+      "cx": 0.5,
+      "top": 0.23,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.1
+    }
+  ]
+}

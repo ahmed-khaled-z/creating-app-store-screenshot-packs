@@ -1,0 +1,83 @@
+{
+  "id": "feature-comparison",
+  "requires": {
+    "min_screenshots": 2,
+    "max_screenshots": 2,
+    "source_class": [
+      "phone",
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "informational"
+  ],
+  "decor": [
+    {
+      "kind": "caption",
+      "cx": 0.28,
+      "cy": 0.9,
+      "slot": 0
+    },
+    {
+      "kind": "caption",
+      "cx": 0.72,
+      "cy": 0.9,
+      "slot": 1
+    }
+  ],
+  "tags": [
+    "dual",
+    "feature"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.07,
+      0.05,
+      0.93,
+      0.22
+    ],
+    "align": "center",
+    "title_max_chars": 28,
+    "subtitle_max_chars": 96,
+    "scale": 1.0
+  },
+  "label": "Feature comparison",
+  "family": "phone",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.4,
+      "cx": 0.28,
+      "top": 0.29,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    },
+    {
+      "source": 1,
+      "width": 0.4,
+      "cx": 0.72,
+      "top": 0.29,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

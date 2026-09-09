@@ -1,0 +1,84 @@
+{
+  "id": "sequence-strip",
+  "requires": {
+    "min_screenshots": 3,
+    "max_screenshots": 3,
+    "source_class": [
+      "phone",
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "triple",
+    "sequence"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.06,
+      0.04,
+      0.94,
+      0.2
+    ],
+    "align": "center",
+    "title_max_chars": 26,
+    "subtitle_max_chars": 96,
+    "scale": 1.0
+  },
+  "label": "Sequence strip",
+  "family": "shared",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.28,
+      "cx": 0.17,
+      "top": 0.34,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.06
+    },
+    {
+      "source": 1,
+      "width": 0.28,
+      "cx": 0.5,
+      "top": 0.34,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.06
+    },
+    {
+      "source": 2,
+      "width": 0.28,
+      "cx": 0.83,
+      "top": 0.34,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.06
+    }
+  ]
+}

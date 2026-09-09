@@ -1,0 +1,57 @@
+{
+  "id": "tablet-hero-landscape",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "tablet"
+    ],
+    "orientation": [
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "hero",
+    "single",
+    "landscape"
+  ],
+  "weight": 1.15,
+  "text": {
+    "area": [
+      0.09,
+      0.06,
+      0.91,
+      0.26
+    ],
+    "align": "center",
+    "title_max_chars": 40,
+    "subtitle_max_chars": 130,
+    "scale": 1.0
+  },
+  "label": "Landscape tablet hero",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.9,
+      "cx": 0.5,
+      "top": 0.33,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

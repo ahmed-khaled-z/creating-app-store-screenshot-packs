@@ -1,0 +1,57 @@
+{
+  "id": "tablet-split-showcase",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "tablet"
+    ],
+    "orientation": [
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "single",
+    "split",
+    "landscape"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.07,
+      0.1,
+      0.93,
+      0.3
+    ],
+    "align": "left",
+    "title_max_chars": 34,
+    "subtitle_max_chars": 120,
+    "scale": 1.0
+  },
+  "label": "Split-screen tablet showcase",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 0,
+      "width": 1.02,
+      "cx": 0.56,
+      "top": 0.38,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "tablet-promo-phone-editorial",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "phone"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "promotional"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [
+    {
+      "kind": "promo-note",
+      "area": [
+        0.1,
+        0.86,
+        0.9,
+        0.94
+      ]
+    },
+    {
+      "kind": "bullets",
+      "area": [
+        0.54,
+        0.6,
+        0.93,
+        0.82
+      ]
+    }
+  ],
+  "tags": [
+    "promotional",
+    "cross-class",
+    "editorial",
+    "calm"
+  ],
+  "weight": 0.9,
+  "text": {
+    "area": [
+      0.54,
+      0.26,
+      0.93,
+      0.76
+    ],
+    "align": "left",
+    "title_max_chars": 24,
+    "subtitle_max_chars": 110,
+    "scale": 1.0
+  },
+  "label": "Tablet promo \u2014 editorial",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.4,
+      "cx": 0.28,
+      "top": 0.25,
+      "rotate": 2.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "lifted",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

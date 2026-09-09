@@ -1,0 +1,57 @@
+{
+  "id": "feature-spotlight",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "phone",
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "single",
+    "feature"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.52,
+      0.16,
+      0.94,
+      0.8
+    ],
+    "align": "left",
+    "title_max_chars": 24,
+    "subtitle_max_chars": 110,
+    "scale": 1.0
+  },
+  "label": "Feature spotlight",
+  "family": "phone",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.46,
+      "cx": 0.22,
+      "top": 0.18,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.18
+    }
+  ]
+}
