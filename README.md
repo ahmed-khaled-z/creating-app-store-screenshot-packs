@@ -1,100 +1,116 @@
 # Creating App Store Screenshot Packs
 
-A Codex skill for turning raw app screenshots into a reviewed, multi-platform marketing pack for Apple App Store and Google Play.
+A Codex skill for turning raw app screenshots into a reviewed, multi-platform marketing pack for the Apple App Store and Google Play.
 
-The skill shows an HTML gallery before rendering, lets you select a layout and style, sanitizes private or demo data, checks current official store dimensions, and returns one ZIP containing iPhone, iPad, Android phone, and Android tablet assets.
+The skill displays an HTML gallery before rendering, lets you select a layout and style, sanitizes private or demo data, checks current official store dimensions, and returns one ZIP containing iPhone, iPad, Android phone, and Android tablet assets.
 
-## المميزات
+## Features
 
-- معاينة HTML قبل توليد الصور النهائية.
-- ثلاثة Layouts: `L1 Hero` و`L2 Split` و`L3 Feature Focus`.
-- ثلاثة Styles: `S1 Clean Cream` و`S2 Bold Brand` و`S3 Soft Gradient`.
-- إخفاء البريد والبيانات الشخصية وبيانات الدفع والحسابات التجريبية.
-- التحقق من أحدث المقاسات من وثائق Apple وGoogle الرسمية وقت التشغيل.
-- منع عرض لقطة iPad على أنها واجهة iPhone أو Android بدون موافقتك.
-- إخراج PNG مرتبة وملف `manifest.json` داخل ZIP واحد.
+- HTML preview before final rendering.
+- Three layouts: `L1 Hero`, `L2 Split`, and `L3 Feature Focus`.
+- Three styles: `S1 Clean Cream`, `S2 Bold Brand`, and `S3 Soft Gradient`.
+- Sanitization of email addresses, personal details, payment information, credentials, notifications, and obvious demo data.
+- Runtime verification of current screenshot dimensions using official Apple and Google documentation.
+- Explicit approval before adapting screenshots across platforms.
+- Numbered PNG files and a provenance manifest inside one ZIP archive.
 
-## المتطلبات
+## Requirements
 
-- Codex يدعم Skills وأدوات إنشاء/تعديل الصور وفتح ملفات HTML.
-- Python 3 لتشغيل أداة التحقق والتغليف؛ لا توجد مكتبات Python إضافية مطلوبة وقت الاستخدام.
-- اتصال بالإنترنت للتحقق من مقاسات المتاجر الحالية.
+- Codex with skill support, image generation or editing tools, and the ability to open local HTML files.
+- Python 3 for image validation and ZIP packaging. No third-party Python runtime dependency is required.
+- Internet access to verify current store requirements.
 
-## التثبيت
+Node.js is needed only to run the HTML concurrency regression test; it is not required for normal skill usage.
 
-### الطريقة الموصى بها: Git
+## Installation
 
-نفّذ الأمر التالي في Terminal:
-
-```bash
-git clone https://github.com/ahmed-khaled-z/creating-app-store-screenshot-packs.git ~/.codex/skills/creating-app-store-screenshot-packs
-```
-
-تحقق من وجود ملف المهارة مباشرة في هذا المسار:
+### Recommended: Git
 
 ```bash
-test -f ~/.codex/skills/creating-app-store-screenshot-packs/SKILL.md && echo "Skill installed"
+git clone https://github.com/ahmed-khaled-z/creating-app-store-screenshot-packs.git \
+  ~/.codex/skills/creating-app-store-screenshot-packs
 ```
 
-ابدأ Task جديدة في Codex إذا لم تظهر المهارة في المحادثة الحالية.
+Verify the installation:
 
-### التثبيت اليدوي
+```bash
+test -f ~/.codex/skills/creating-app-store-screenshot-packs/SKILL.md \
+  && echo "Skill installed"
+```
 
-1. نزّل الملف من زر **Code → Download ZIP** في صفحة المستودع.
-2. فك الضغط.
-3. انقل المجلد إلى:
+Start a new Codex task if the skill is not available in the current conversation.
+
+### Manual installation
+
+1. Open the repository and choose **Code → Download ZIP**.
+2. Extract the archive.
+3. Move the extracted directory to:
 
    ```text
    ~/.codex/skills/creating-app-store-screenshot-packs
    ```
 
-4. تأكد أن `SKILL.md` موجود مباشرة داخل هذا المجلد، وليس داخل مجلد متداخل إضافي.
+4. Confirm that `SKILL.md` is directly inside that directory, not inside an additional nested folder.
 
-### التحديث
-
-إذا ثبّت المهارة باستخدام Git:
+### Update
 
 ```bash
 git -C ~/.codex/skills/creating-app-store-screenshot-packs pull --ff-only
 ```
 
-### إزالة المهارة
+### Uninstall
 
-انقل المجلد التالي إلى سلة المهملات ثم ابدأ Task جديدة في Codex:
+Move the following directory to Trash, then start a new Codex task:
 
 ```text
 ~/.codex/skills/creating-app-store-screenshot-packs
 ```
 
-## الاستخدام
+## Usage
 
-أرفق لقطات الشاشة ثم اكتب:
-
-```text
-استخدم $creating-app-store-screenshot-packs لإنشاء حزمة صور للـApp Store وGoogle Play من اللقطات المرفقة.
-```
-
-يمكنك إضافة تفاصيل اختيارية:
+Attach your screenshots, then enter:
 
 ```text
-استخدم $creating-app-store-screenshot-packs.
-اسم التطبيق: Schoolz
-اللغة: English
-استخدم ألوان الشعار المرفق.
-اسمح بتكييف لقطات iPad للتابلت Android فقط.
+Use $creating-app-store-screenshot-packs to create App Store and Google Play marketing screenshot packs from the attached screenshots.
 ```
 
-## ماذا يحدث أثناء التشغيل؟
+You can provide optional details:
 
-1. تفحص المهارة كل لقطة وتحدد المنصة والاتجاه والبيانات التي يجب إخفاؤها.
-2. تسألك فقط عن المعلومات الضرورية غير المتوفرة، ومنها السماح بتكييف لقطة لمنصة أخرى.
-3. تتحقق من مقاسات Apple وGoogle الحالية من المصادر الرسمية.
-4. تنشئ نسخة منخفضة الدقة ومنقحة من لقطة ممثلة، ثم تعرض صفحة `preview.html` محليًا.
-5. تختار Layout وStyle وتنسخ كودًا مثل `L2-S1` إلى المحادثة.
-6. يبدأ التوليد النهائي بعد تأكيد الكود فقط.
-7. تتحقق الأداة من المقاسات والأسماء وبنية PNG ثم تنشئ ملف ZIP.
+```text
+Use $creating-app-store-screenshot-packs.
+App name: Schoolz
+Language: English
+Use the colors from the attached logo.
+Allow iPad screenshots to be adapted for Android tablets only.
+```
 
-## شكل ملف ZIP
+## Workflow
+
+1. The skill inspects every screenshot and identifies its platform, orientation, represented screen, marketing value, and sensitive data.
+2. It asks only for missing essentials, including permission for any cross-platform adaptation.
+3. It verifies current accepted dimensions using official Apple and Google documentation.
+4. It creates a sanitized, low-resolution representative screenshot and opens the local `preview.html` gallery.
+5. You choose a layout and style, then paste a confirmed code such as `L2-S1` into the conversation.
+6. Final rendering starts only after the selection code is confirmed.
+7. The skill validates dimensions, PNG structure, filenames, and provenance before creating the ZIP.
+
+## Layouts and styles
+
+| Code | Layout |
+|---|---|
+| `L1` | Hero |
+| `L2` | Split |
+| `L3` | Feature Focus |
+
+| Code | Style |
+|---|---|
+| `S1` | Clean Cream |
+| `S2` | Bold Brand |
+| `S3` | Soft Gradient |
+
+A valid confirmed selection ranges from `L1-S1` to `L3-S3`.
+
+## ZIP structure
 
 ```text
 app-store-assets.zip
@@ -108,41 +124,34 @@ app-store-assets.zip
     └── android-tablet/
 ```
 
-يسجل `manifest.json` اللغة والـLayout والـStyle والمقاسات ومصدر كل لقطة والمنصات التي تم تكييفها.
+`manifest.json` records the selected layout, style, language, dimensions, original source screenshot for every output, and any adapted platforms.
 
-## ملاحظات مهمة
+## Important notes
 
-- أفضل نتيجة تأتي من توفير لقطات أصلية لكل منصة وجهاز.
-- إذا وفرت لقطات iPad فقط، فلن تعتبرها المهارة واجهة iPhone أو Android أصلية دون موافقتك.
-- راجع النصوص التسويقية والادعاءات قبل رفع الصور إلى المتجر.
-- المقاسات ليست مخزنة كثوابت داخل المهارة، لأنها قد تتغير؛ يتم التحقق منها وقت التشغيل.
+- Native screenshots for each platform produce the most truthful results.
+- iPad screenshots are not presented as native iPhone or Android interfaces without explicit approval.
+- Review marketing text and product claims before uploading the images to a store.
+- Store dimensions are verified at runtime instead of being stored as fixed constants, because platform requirements can change.
 
-## اختبار المستودع
-
-اختبارات Python:
+## Tests
 
 ```bash
 python3 scripts/test_package_assets.py
 python3 scripts/test_preview_html.py
-```
-
-اختبار تزامن اختيارات HTML، ويتطلب Node.js للاختبار فقط:
-
-```bash
 node scripts/test_preview_race.js
 ```
 
 ## Repository structure
 
 ```text
-SKILL.md                  Skill workflow
-agents/openai.yaml        Codex display metadata
-assets/preview.html       Self-contained layout/style selector
-scripts/package_assets.py Deterministic PNG validation and ZIP packaging
-scripts/test_*.py         Python regression checks
-scripts/test_preview_race.js HTML async-state regression check
+SKILL.md                      Skill workflow
+agents/openai.yaml            Codex display metadata
+assets/preview.html           Self-contained layout and style selector
+scripts/package_assets.py     PNG validation and ZIP packaging
+scripts/test_*.py             Python regression checks
+scripts/test_preview_race.js  HTML asynchronous-state regression check
 ```
 
 ## License
 
-MIT
+[MIT](LICENSE)
