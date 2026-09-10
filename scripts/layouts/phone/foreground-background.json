@@ -1,0 +1,71 @@
+{
+  "id": "foreground-background",
+  "requires": {
+    "min_screenshots": 2,
+    "max_screenshots": 2,
+    "source_class": [
+      "phone",
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "dual",
+    "depth"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.07,
+      0.05,
+      0.93,
+      0.24
+    ],
+    "align": "center",
+    "title_max_chars": 28,
+    "subtitle_max_chars": 96,
+    "scale": 1.0
+  },
+  "label": "Foreground and background",
+  "family": "phone",
+  "devices": [
+    {
+      "source": 1,
+      "width": 0.4,
+      "cx": 0.68,
+      "top": 0.24,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "flat",
+      "opacity": 0.92,
+      "dim": 0.3,
+      "max_overflow": 0.06
+    },
+    {
+      "source": 0,
+      "width": 0.54,
+      "cx": 0.42,
+      "top": 0.34,
+      "rotate": 0.0,
+      "z": 3,
+      "fit": "crop-bottom",
+      "shadow": "lifted",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.12
+    }
+  ]
+}

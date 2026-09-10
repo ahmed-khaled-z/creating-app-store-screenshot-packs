@@ -1,114 +1,80 @@
 # Creating App Store Screenshot Packs
 
-A Codex skill for turning raw app screenshots into a reviewed, multi-platform marketing pack for the Apple App Store and Google Play.
+A skill for turning raw app screenshots into a reviewed, multi-platform marketing pack for the Apple App Store and Google Play.
 
-The skill displays an HTML gallery before rendering, lets you select a layout and style, sanitizes private or demo data, checks current official store dimensions, and returns one ZIP containing iPhone, iPad, Android phone, and Android tablet assets.
+Screenshots are classified by shape, compositions are laid out by a deterministic layout engine with separate phone and tablet catalogues, device correctness is validated before export, and the result ships as one ZIP with a provenance manifest.
 
-## Features
+## What it does differently
 
-- HTML preview before final rendering.
-- Three layouts: `L1 Hero`, `L2 Split`, and `L3 Feature Focus`.
-- Three styles: `S1 Clean Cream`, `S2 Bold Brand`, and `S3 Soft Gradient`.
-- Sanitization of email addresses, personal details, payment information, credentials, notifications, and obvious demo data.
-- Runtime verification of current screenshot dimensions using official Apple and Google documentation.
-- Explicit approval before adapting screenshots across platforms.
-- Numbered PNG files and a provenance manifest inside one ZIP archive.
+- **Real device handling.** A frame's screen area always matches the source screenshot's aspect ratio, so nothing is ever stretched into the wrong shape. Phone captures cannot produce tablet-shaped frames.
+- **No fake tablets.** When only phone screenshots exist and a tablet export is requested, the skill uses a tablet layout tagged `promotional` that presents the phone as marketing artwork with a visible disclosure — and says a real tablet capture would be stronger. A phone capture is never framed as native tablet UI.
+- **An adaptive layout engine.** 29 declarative templates across phone, tablet, and shared families. Layout is scored per screenshot against source shape, target family, screenshot count, headline length, promotional vs informational intent, position in the sequence, and what the set already used.
+- **Sequence awareness.** The whole set is ordered before anything is composed: value proposition, core feature, secondary feature, management, notifications, customization.
+- **Validation before export.** Phone frames in tablet exports, tablet frames in phone exports, up-scaled phone mockups, distorted screen areas, devices outside safe areas, clipped headlines, wrong export dimensions, and single-template sets are all rejected; the pipeline retries with the next-best layout.
+- **One design system per pack.** Layouts vary, tokens do not.
 
 ## Requirements
 
-- Codex with skill support, image generation or editing tools, and the ability to open local HTML files.
-- Python 3 for image validation and ZIP packaging. No third-party Python runtime dependency is required.
-- Internet access to verify current store requirements.
-
-Node.js is needed only to run the HTML concurrency regression test; it is not required for normal skill usage.
+- Python 3.11 or newer. No third-party Python dependency.
+- A browser to display the confirmation gallery.
+- Headless Chrome, Chromium, or Edge for rasterizing — optional; `--html-only` emits composition HTML for capture by other tooling.
+- Internet access to verify current store dimensions.
 
 ## Installation
 
-### Recommended: Git
-
 ```bash
 git clone https://github.com/ahmed-khaled-z/creating-app-store-screenshot-packs.git \
-  ~/.codex/skills/creating-app-store-screenshot-packs
+  ~/.claude/skills/creating-app-store-screenshot-packs
 ```
 
-Verify the installation:
+For Codex, clone into `~/.codex/skills/` instead. Confirm `SKILL.md` sits directly inside that directory. Start a new task if the skill is not offered in the current conversation.
 
-```bash
-test -f ~/.codex/skills/creating-app-store-screenshot-packs/SKILL.md \
-  && echo "Skill installed"
-```
-
-Start a new Codex task if the skill is not available in the current conversation.
-
-### Manual installation
-
-1. Open the repository and choose **Code → Download ZIP**.
-2. Extract the archive.
-3. Move the extracted directory to:
-
-   ```text
-   ~/.codex/skills/creating-app-store-screenshot-packs
-   ```
-
-4. Confirm that `SKILL.md` is directly inside that directory, not inside an additional nested folder.
-
-### Update
-
-```bash
-git -C ~/.codex/skills/creating-app-store-screenshot-packs pull --ff-only
-```
-
-### Uninstall
-
-Move the following directory to Trash, then start a new Codex task:
-
-```text
-~/.codex/skills/creating-app-store-screenshot-packs
-```
+Update with `git -C <skill dir> pull --ff-only`; uninstall by deleting the directory.
 
 ## Usage
 
-Attach your screenshots, then enter:
+Attach your screenshots, then:
 
 ```text
-Use $creating-app-store-screenshot-packs to create App Store and Google Play marketing screenshot packs from the attached screenshots.
-```
-
-You can provide optional details:
-
-```text
-Use $creating-app-store-screenshot-packs.
+Create App Store and Google Play marketing screenshot packs from the attached screenshots.
 App name: Schoolz
 Language: English
 Use the colors from the attached logo.
-Allow iPad screenshots to be adapted for Android tablets only.
 ```
 
-## Workflow
+## Pipeline
 
-1. The skill inspects every screenshot and identifies its platform, orientation, represented screen, marketing value, and sensitive data.
-2. It asks only for missing essentials, including permission for any cross-platform adaptation.
-3. It verifies current accepted dimensions using official Apple and Google documentation.
-4. It creates a sanitized, low-resolution representative screenshot and opens the local `preview.html` gallery.
-5. You choose a layout and style, then paste a confirmed code such as `L2-S1` into the conversation.
-6. Final rendering starts only after the selection code is confirmed.
-7. The skill validates dimensions, PNG structure, filenames, and provenance before creating the ZIP.
+1. Load and analyse every screenshot — dimensions, orientation, aspect ratio, device class.
+2. Resolve each screenshot against each target: `native`, `promotional`, or `incompatible`.
+3. Sequence the set by marketing role.
+4. Build the confirmation gallery from real compositions and wait for a style code (`S1`–`S3`).
+5. Select a layout per slide, resolve absolute geometry, render, validate, retry on failure.
+6. Verify exact PNG dimensions, write the provenance manifest, produce the ZIP.
 
-## Layouts and styles
+## Command line
 
-| Code | Layout |
+```bash
+python3 scripts/classify.py shot.png --target iphone --target ipad
+python3 scripts/build_preview.py spec.json --out preview/gallery.html
+python3 scripts/generate_pack.py spec.json --staging staging --report pack-report.json
+python3 scripts/package_assets.py staging app-store-assets.zip --style S1 --language en \
+  --size iphone=1290x2796 --size ipad=2048x2732 \
+  --size android-phone=1080x1920 --size android-tablet=1600x2560 \
+  --source 'iphone/01.png=/path/original.png' --pack-report pack-report.json
+```
+
+`generate_pack.py --html-only` plans, validates, and emits composition HTML without needing a browser binary.
+
+## Layout catalogue
+
+| Family | Templates |
 |---|---|
-| `L1` | Hero |
-| `L2` | Split |
-| `L3` | Feature Focus |
+| `phone` | hero-centered, hero-offset-left, hero-offset-right, hero-oversized, hero-cropped-bottom, floating-device, dual-side-by-side, dual-overlap, staggered-pair, foreground-background, angled-pair, triple-showcase, feature-spotlight, feature-comparison, step-sequence |
+| `tablet` | tablet-hero, tablet-hero-landscape, tablet-portrait-centered, tablet-with-side-content, tablet-with-cards, dual-tablet, tablet-split-showcase |
+| `tablet` (promotional) | tablet-promo-phone-showcase, tablet-promo-phone-offset, tablet-promo-phone-cards, tablet-promo-phone-editorial, tablet-promo-phone-trio |
+| `shared` | marketing-showcase, sequence-strip |
 
-| Code | Style |
-|---|---|
-| `S1` | Clean Cream |
-| `S2` | Bold Brand |
-| `S3` | Soft Gradient |
-
-A valid confirmed selection ranges from `L1-S1` to `L3-S3`.
+Styles: `S1 Clean Cream`, `S2 Bold Brand`, `S3 Soft Gradient`.
 
 ## ZIP structure
 
@@ -116,40 +82,46 @@ A valid confirmed selection ranges from `L1-S1` to `L3-S3`.
 app-store-assets.zip
 └── app-store-assets/
     ├── manifest.json
-    ├── iphone/
-    │   ├── 01.png
-    │   └── 02.png
+    ├── iphone/01.png …
     ├── ipad/
     ├── android-phone/
     └── android-tablet/
 ```
 
-`manifest.json` records the selected layout, style, language, dimensions, original source screenshot for every output, and any adapted platforms.
-
-## Important notes
-
-- Native screenshots for each platform produce the most truthful results.
-- iPad screenshots are not presented as native iPhone or Android interfaces without explicit approval.
-- Review marketing text and product claims before uploading the images to a store.
-- Store dimensions are verified at runtime instead of being stored as fixed constants, because platform requirements can change.
-
-## Tests
-
-```bash
-python3 scripts/test_package_assets.py
-python3 scripts/test_preview_html.py
-node scripts/test_preview_race.js
-```
+`manifest.json` records the style, language, dimensions, adapted platforms, and, per output, the original source screenshot, layout template, presentation mode, and device family.
 
 ## Repository structure
 
 ```text
 SKILL.md                      Skill workflow
 agents/openai.yaml            Codex display metadata
-assets/preview.html           Self-contained layout and style selector
-scripts/package_assets.py     PNG validation and ZIP packaging
-scripts/test_*.py             Python regression checks
-scripts/test_preview_race.js  HTML asynchronous-state regression check
+scripts/devices.py            Device families, classification, frame geometry
+scripts/analyzer.py           Screenshot and set analysis
+scripts/layouts/              Declarative layout templates
+scripts/layout_engine.py      Layout selection, geometry, typography
+scripts/style.py              Design tokens per style direction
+scripts/render.py             Composition HTML and rasterization
+scripts/validate.py           Device and set validation
+scripts/generate_pack.py      Pipeline orchestration
+scripts/build_preview.py      Confirmation gallery
+scripts/classify.py           Standalone classification report
+scripts/package_assets.py     Dimension checks, manifest, ZIP
+scripts/test_*.py             Regression checks
+```
+
+## Known limitations
+
+- Marketing role detection uses filename and label keywords, not screenshot content. Pass a `label` per slide for reliable sequencing.
+- Landscape tablet templates need landscape captures; a portrait capture will not be rotated into them.
+- Headless Chrome is the only bundled rasterizer. Where it is unavailable or blocked, use `--html-only` and capture the emitted HTML at 1× device scale factor.
+- Sanitization of personal or demo data happens before the pipeline; the renderer never edits screenshot pixels.
+
+## Tests
+
+```bash
+python3 scripts/test_pipeline.py
+python3 scripts/test_build_preview.py
+python3 scripts/test_package_assets.py
 ```
 
 ## License

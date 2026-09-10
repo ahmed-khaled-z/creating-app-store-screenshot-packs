@@ -76,18 +76,24 @@ def collect(staging: Path, allowed: dict[str, set[tuple[int, int]]]) -> dict[str
     return files
 
 
-def build_manifest(files: dict, layout: str, style: str, language: str, adapted: set[str], sources: dict[str, str]) -> dict:
+def build_manifest(files: dict, layout: str, style: str, language: str, adapted: set[str],
+                   sources: dict[str, str], pack: dict | None = None) -> dict:
+    """Manifest rows carry provenance and, when a pack report is supplied, the
+    composition decisions that produced each file."""
     platforms = {}
     for platform in sorted(files):
-        platforms[platform] = [
-            {
-                "source": sources[f"{platform}/{item['filename']}"],
-                "staged": f"{platform}/{item['filename']}",
+        rows = []
+        for item in files[platform]:
+            staged = f"{platform}/{item['filename']}"
+            row = {
+                "source": sources[staged],
+                "staged": staged,
                 "output": f"app-store-assets/{platform}/{item['filename']}",
                 "dimensions": [item["width"], item["height"]],
             }
-            for item in files[platform]
-        ]
+            row.update(pack_details(pack, platform, item["filename"]))
+            rows.append(row)
+        platforms[platform] = rows
     return {
         "layout": layout,
         "style": style,
@@ -111,6 +117,24 @@ def package(staging: Path, output: Path, manifest: dict) -> None:
                 write(archive, item["output"], (staging / item["staged"]).read_bytes())
 
 
+def pack_details(pack: dict | None, platform: str, filename: str) -> dict:
+    """Composition metadata for one staged file, from a generate_pack report."""
+    if pack is None:
+        return {}
+    try:
+        outputs = pack["platforms"][platform]["outputs"]
+    except (KeyError, TypeError):
+        raise ValueError(f"pack report has no outputs for platform: {platform}") from None
+    for output in outputs:
+        if output["filename"] == filename:
+            return {
+                "layout_template": output["layout"],
+                "presentation": output["presentation"],
+                "device_family": platform,
+            }
+    raise ValueError(f"pack report does not describe {platform}/{filename}")
+
+
 def parse_size(value: str) -> tuple[str, tuple[int, int]]:
     try:
         platform, dimensions = value.split("=", 1)
@@ -126,13 +150,16 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("staging_dir", type=Path)
     parser.add_argument("output_zip", type=Path)
-    parser.add_argument("--layout", required=True)
+    parser.add_argument("--layout", default="auto",
+                        help="pinned layout code, or 'auto' when the layout engine chose per file")
     parser.add_argument("--style", required=True)
     parser.add_argument("--language", required=True)
     parser.add_argument("--size", action="append", type=parse_size, required=True)
     parser.add_argument("--source", action="append", required=True, metavar="PLATFORM/FILE.PNG=ORIGINAL_PATH",
                         help="one original supplied screenshot path per staged output; relative paths use the current directory")
     parser.add_argument("--adapted", action="append", default=[])
+    parser.add_argument("--pack-report", type=Path,
+                        help="generate_pack.py report; records layout and device family per output")
     args = parser.parse_args(argv)
     if set(args.adapted) - set(PLATFORMS):
         parser.error("--adapted must name a supported platform")
@@ -156,7 +183,10 @@ def main(argv: list[str] | None = None) -> int:
         expected = {f"{platform}/{item['filename']}" for platform in files for item in files[platform]}
         if set(sources) != expected:
             raise ValueError("--source must map every staged platform/filename exactly once, with no extra outputs")
-        package(args.staging_dir, args.output_zip, build_manifest(files, args.layout, args.style, args.language, set(args.adapted), sources))
+        pack = json.loads(args.pack_report.read_text()) if args.pack_report else None
+        manifest = build_manifest(files, args.layout, args.style, args.language,
+                                  set(args.adapted), sources, pack)
+        package(args.staging_dir, args.output_zip, manifest)
     except (OSError, ValueError, zipfile.BadZipFile) as error:
         print(error, file=sys.stderr)
         return 1

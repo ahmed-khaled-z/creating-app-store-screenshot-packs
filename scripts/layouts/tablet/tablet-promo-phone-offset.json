@@ -1,0 +1,76 @@
+{
+  "id": "tablet-promo-phone-offset",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "phone"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "promotional"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [
+    {
+      "kind": "promo-note",
+      "area": [
+        0.1,
+        0.86,
+        0.9,
+        0.94
+      ]
+    },
+    {
+      "kind": "blob",
+      "cx": 0.72,
+      "cy": 0.52,
+      "r": 0.3,
+      "tone": "brand",
+      "z": 1
+    }
+  ],
+  "tags": [
+    "promotional",
+    "cross-class",
+    "asymmetric",
+    "editorial"
+  ],
+  "weight": 0.9,
+  "text": {
+    "area": [
+      0.07,
+      0.24,
+      0.46,
+      0.74
+    ],
+    "align": "left",
+    "title_max_chars": 24,
+    "subtitle_max_chars": 100,
+    "scale": 1.0
+  },
+  "label": "Tablet promo \u2014 offset phone",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.38,
+      "cx": 0.72,
+      "top": 0.24,
+      "rotate": -2.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "lifted",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

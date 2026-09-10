@@ -1,0 +1,58 @@
+{
+  "id": "marketing-showcase",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "phone",
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "single",
+    "editorial"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.08,
+      0.68,
+      0.92,
+      0.94
+    ],
+    "align": "center",
+    "title_max_chars": 30,
+    "subtitle_max_chars": 100,
+    "scale": 1.0
+  },
+  "label": "Marketing showcase",
+  "family": "shared",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.58,
+      "cx": 0.5,
+      "top": 0.07,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

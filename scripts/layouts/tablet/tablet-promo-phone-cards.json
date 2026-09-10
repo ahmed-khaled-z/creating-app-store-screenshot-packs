@@ -1,0 +1,83 @@
+{
+  "id": "tablet-promo-phone-cards",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "phone"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "promotional"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [
+    {
+      "kind": "promo-note",
+      "area": [
+        0.1,
+        0.86,
+        0.9,
+        0.94
+      ]
+    },
+    {
+      "kind": "card",
+      "cx": 0.18,
+      "cy": 0.46,
+      "w": 0.22,
+      "h": 0.1,
+      "slot": 0
+    },
+    {
+      "kind": "card",
+      "cx": 0.82,
+      "cy": 0.6,
+      "w": 0.22,
+      "h": 0.1,
+      "slot": 1
+    }
+  ],
+  "tags": [
+    "promotional",
+    "cross-class",
+    "cards"
+  ],
+  "weight": 0.9,
+  "text": {
+    "area": [
+      0.1,
+      0.05,
+      0.9,
+      0.22
+    ],
+    "align": "center",
+    "title_max_chars": 34,
+    "subtitle_max_chars": 110,
+    "scale": 1.0
+  },
+  "label": "Tablet promo \u2014 phone with cards",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.38,
+      "cx": 0.5,
+      "top": 0.27,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "lifted",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

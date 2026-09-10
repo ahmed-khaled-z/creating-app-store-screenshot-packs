@@ -1,0 +1,92 @@
+{
+  "id": "tablet-promo-phone-trio",
+  "requires": {
+    "min_screenshots": 3,
+    "max_screenshots": 3,
+    "source_class": [
+      "phone"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "promotional"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [
+    {
+      "kind": "promo-note",
+      "area": [
+        0.1,
+        0.86,
+        0.9,
+        0.94
+      ]
+    }
+  ],
+  "tags": [
+    "promotional",
+    "cross-class"
+  ],
+  "weight": 0.9,
+  "text": {
+    "area": [
+      0.08,
+      0.04,
+      0.92,
+      0.22
+    ],
+    "align": "center",
+    "title_max_chars": 30,
+    "subtitle_max_chars": 96,
+    "scale": 1.0
+  },
+  "label": "Tablet promo \u2014 phone trio",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 1,
+      "width": 0.307,
+      "cx": 0.2,
+      "top": 0.36,
+      "rotate": -4.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.18,
+      "max_overflow": 0.0
+    },
+    {
+      "source": 2,
+      "width": 0.307,
+      "cx": 0.8,
+      "top": 0.36,
+      "rotate": 4.0,
+      "z": 2,
+      "fit": "contain",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.18,
+      "max_overflow": 0.0
+    },
+    {
+      "source": 0,
+      "width": 0.354,
+      "cx": 0.5,
+      "top": 0.29,
+      "rotate": 0.0,
+      "z": 3,
+      "fit": "contain",
+      "shadow": "lifted",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.0
+    }
+  ]
+}

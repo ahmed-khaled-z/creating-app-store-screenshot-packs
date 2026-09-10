@@ -1,0 +1,56 @@
+{
+  "id": "tablet-hero",
+  "requires": {
+    "min_screenshots": 1,
+    "max_screenshots": 1,
+    "source_class": [
+      "tablet"
+    ],
+    "orientation": [
+      "portrait"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "promotional",
+    "informational"
+  ],
+  "decor": [],
+  "tags": [
+    "hero",
+    "single"
+  ],
+  "weight": 1.15,
+  "text": {
+    "area": [
+      0.1,
+      0.05,
+      0.9,
+      0.22
+    ],
+    "align": "center",
+    "title_max_chars": 40,
+    "subtitle_max_chars": 120,
+    "scale": 1.0
+  },
+  "label": "Tablet hero",
+  "family": "tablet",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.74,
+      "cx": 0.5,
+      "top": 0.26,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.1
+    }
+  ]
+}

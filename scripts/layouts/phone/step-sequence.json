@@ -1,0 +1,102 @@
+{
+  "id": "step-sequence",
+  "requires": {
+    "min_screenshots": 3,
+    "max_screenshots": 3,
+    "source_class": [
+      "phone",
+      "tablet"
+    ],
+    "orientation": [
+      "portrait",
+      "landscape"
+    ],
+    "presentation": [
+      "native",
+      "native-offspec"
+    ]
+  },
+  "intent": [
+    "informational"
+  ],
+  "decor": [
+    {
+      "kind": "step",
+      "cx": 0.18,
+      "cy": 0.26,
+      "index": 1
+    },
+    {
+      "kind": "step",
+      "cx": 0.5,
+      "cy": 0.32,
+      "index": 2
+    },
+    {
+      "kind": "step",
+      "cx": 0.82,
+      "cy": 0.38,
+      "index": 3
+    }
+  ],
+  "tags": [
+    "triple",
+    "sequence"
+  ],
+  "weight": 1.0,
+  "text": {
+    "area": [
+      0.06,
+      0.04,
+      0.94,
+      0.2
+    ],
+    "align": "center",
+    "title_max_chars": 26,
+    "subtitle_max_chars": 96,
+    "scale": 1.0
+  },
+  "label": "Step-by-step sequence",
+  "family": "phone",
+  "devices": [
+    {
+      "source": 0,
+      "width": 0.3,
+      "cx": 0.18,
+      "top": 0.31,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.06
+    },
+    {
+      "source": 1,
+      "width": 0.3,
+      "cx": 0.5,
+      "top": 0.37,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.06
+    },
+    {
+      "source": 2,
+      "width": 0.3,
+      "cx": 0.82,
+      "top": 0.43,
+      "rotate": 0.0,
+      "z": 2,
+      "fit": "crop-bottom",
+      "shadow": "soft",
+      "opacity": 1.0,
+      "dim": 0.0,
+      "max_overflow": 0.06
+    }
+  ]
+}
